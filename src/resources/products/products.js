@@ -5,12 +5,22 @@ import createHttpError from 'http-errors';
 
 import { readProducts, writeProducts, saveImages } from '../../utilis.js';
 const productsRouter = express.Router();
-import createHttpError from 'http-errors';
+
 //////////////get products
 productsRouter.get('/', async (req, res, next) => {
+	console.log(req.query.category);
 	try {
-		const products = await readProducts();
-		res.status(200).send(products);
+		if (req.query.category) {
+			const products = await readProducts();
+			let categories = products.filter(
+				(product) => product.category === req.query.category,
+			);
+			console.log(categories);
+			res.status(200).send(categories);
+		} else {
+			const products = await readProducts();
+			res.status(200).send(products);
+		}
 	} catch (error) {
 		next(error);
 	}
