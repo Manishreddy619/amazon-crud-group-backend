@@ -27,9 +27,9 @@ server.use(express.json());
 server.use('/products', productsRouter);
 server.use('/reviews', ReviewsRouter);
 
+server.use(notfound);
 server.use(unAuthorized);
 server.use(BadRequest);
-server.use(notfound);
 server.use(forbiden);
 server.use(serverside);
 server.listen(PORT, () => {
