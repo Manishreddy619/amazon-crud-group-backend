@@ -2,8 +2,8 @@ import express from 'express';
 
 import { join } from 'path';
 import {
-	BadRequest,
-	unAuthorized,
+	badrequest,
+	unauthor,
 	notfound,
 	forbiden,
 	serverside,
@@ -27,8 +27,8 @@ server.use(express.json());
 server.use('/products', productsRouter);
 server.use('/reviews', ReviewsRouter);
 
-server.use(unAuthorized);
-server.use(BadRequest);
+server.use(unauthor);
+server.use(badrequest);
 server.use(notfound);
 server.use(forbiden);
 server.use(serverside);
