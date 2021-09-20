@@ -11,7 +11,6 @@ import {
 import productsRouter from './resources/products/products.js';
 import ReviewsRouter from './resources/reviews/reviews.js';
 import cors from 'cors';
-import { notfound } from './errorHandlers.js';
 
 const server = express(); ///
 
