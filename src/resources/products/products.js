@@ -12,6 +12,27 @@ productsRouter.get('/', async (req, res, next) => {
 		next(error);
 	}
 });
+productsRouter.get('/:id', async (req, res, next) => {
+	try {
+		const products = await readProducts();
+		const filteredproduct = products.findIndex(
+			(product) => product.id === req.params.id,
+		);
+		console.log(filteredproduct);
+		if (filteredproduct !== -1) {
+			const requiredproduct = products.find(
+				(product) => product.id === req.params.id,
+			);
+			res.status(200).send(requiredproduct);
+		}
+		if (filteredproduct === -1) {
+			// res.send('not found');
+			next(createHttpError(404, `id ${req.params.id} not found `));
+		}
+	} catch (error) {
+		next(error);
+	}
+});
 productsRouter.delete('/:id', async (req, res, next) => {
 	try {
 		const products = await readProducts();
