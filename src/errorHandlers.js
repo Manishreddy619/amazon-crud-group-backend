@@ -1,14 +1,15 @@
-export const BadRequest = (err, req, res, next) => {
+export const badrequest = (err, req, res, next) => {
 	if (err.status === 400) {
 		res.status(400).send(err.message);
 	} else {
 		next(err);
 	}
 };
-
-export const unAuthorized = (err, req, res, next) => {
+export const unauthor = (err, req, res, next) => {
 	if (err.status === 401) {
 		res.status(401).send(err.message);
+	} else {
+		next(err);
 	}
 };
 
