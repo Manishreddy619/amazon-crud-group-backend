@@ -1,4 +1,8 @@
 [
-	{ "name": "manish", "id": "1" },
-	{ "name": "manish", "id": "2" }
+	{
+		"title": "rick astley30",
+		"imageUrl": "http://localhost:3002/products/images/rickastley.jpg",
+		"id": "70ayqj5xkktskwj0g",
+		"createdAt": "2021-09-20T11:42:12.543Z"
+	}
 ]
