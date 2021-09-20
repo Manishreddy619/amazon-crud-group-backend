@@ -1,6 +1,11 @@
 import express from 'express';
 
-import { readProducts, writeProducts, saveImages } from '../../utilis.js';
+import {
+	readProducts,
+	writeProducts,
+	saveImages,
+	readReviews,
+} from '../../utilis.js';
 const productsRouter = express.Router();
 import createHttpError from 'http-errors';
 //////////////get products
@@ -28,6 +33,22 @@ productsRouter.get('/:id', async (req, res, next) => {
 		if (filteredproduct === -1) {
 			// res.send('not found');
 			next(createHttpError(404, `id ${req.params.id} not found `));
+		}
+	} catch (error) {
+		next(error);
+	}
+});
+productsRouter.get('/:id/reviews', async (req, res, next) => {
+	try {
+		const reviews = await readReviews();
+		const filteredReview = reviews.findIndex(
+			(review) => review.productId === req.params.id,
+		);
+		if (filteredReview !== -1) {
+			const requiredReview = reviews.find(
+				(product) => product.productId === req.params.id,
+			);
+			res.status(200).send(requiredReview);
 		}
 	} catch (error) {
 		next(error);
